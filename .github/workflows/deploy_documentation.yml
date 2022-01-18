@@ -14,6 +14,7 @@ jobs:
         token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
         ref: main
         path: runestone
+        submodules: recursive
     - name: Generate documentation
       run: |
           cd runestone
