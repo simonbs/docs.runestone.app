@@ -13,21 +13,24 @@ jobs:
   deploy_documentation:
     runs-on: macos-11
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/checkout@v2
-      with:
-        repository: simonbs/runestone
-        token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-        ref: ${{ github.event.inputs.tag }}
-        path: runestone
-        submodules: recursive
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Checkout Runestone repository
+      uses: actions/checkout@v2
+        with:
+          repository: simonbs/runestone
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          ref: ${{ github.event.inputs.tag }}
+          path: runestone
+          submodules: recursive
     - name: Generate documentation
       run: |
           cd runestone
           xcodebuild docbuild -scheme Runestone -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ../DerivedData
           rm -rf ../Runestone.doccarchive
           mv ../DerivedData/Build/Products/Debug-iphonesimulator/Runestone.doccarchive ../
-    - uses: crazy-max/ghaction-import-gpg@v3
+    - name: Setup GPG key
+      uses: crazy-max/ghaction-import-gpg@v3
       with:
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         passphrase: ${{ secrets.GPG_PASSPHRASE }}
