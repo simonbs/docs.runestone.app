@@ -2,6 +2,12 @@ name: Deploy documentation
 
 on: 
   workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        description: Tag or to generate documentation for
+        default: main
+        required: true
 
 jobs:
   deploy_documentation:
@@ -12,14 +18,14 @@ jobs:
       with:
         repository: simonbs/runestone
         token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-        ref: main
+        ref: ${{ github.event.inputs.tag }}
         path: runestone
         submodules: recursive
     - name: Generate documentation
       run: |
           cd runestone
           xcodebuild docbuild -scheme Runestone -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ../DerivedData
-          mv DerivedData/Products/Debug-iphonesimulator/Runestone.doccarchive ../
+          mv ../DerivedData/Products/Debug-iphonesimulator/Runestone.doccarchive ../
     - name: Commit changes
       run: |
          if [ -n "$(git status --porcelain)" ]; then
