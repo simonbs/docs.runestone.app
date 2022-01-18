@@ -17,12 +17,12 @@ jobs:
       uses: actions/checkout@v2
     - name: Checkout Runestone repository
       uses: actions/checkout@v2
-        with:
-          repository: simonbs/runestone
-          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          ref: ${{ github.event.inputs.tag }}
-          path: runestone
-          submodules: recursive
+      with:
+        repository: simonbs/runestone
+        token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+        ref: ${{ github.event.inputs.tag }}
+        path: runestone
+        submodules: recursive
     - name: Generate documentation
       run: |
           cd runestone
