@@ -16,4 +16,4 @@ jobs:
     - name: Debug
       run: ls -la
     - name: Navigate to Runestone repository
-    - run: cd runestone
+      run: cd runestone
