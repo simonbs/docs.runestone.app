@@ -26,11 +26,17 @@ jobs:
           cd runestone
           xcodebuild docbuild -scheme Runestone -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ../DerivedData
           mv ../DerivedData/Build/Products/Debug-iphonesimulator/Runestone.doccarchive ../
+    - uses: crazy-max/ghaction-import-gpg@v3
+      with:
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        passphrase: ${{ secrets.GPG_PASSPHRASE }}
+        git-user-signingkey: true
+        git-commit-gpgsign: true
     - name: Commit changes
       run: |
          if [ -n "$(git status --porcelain)" ]; then
            git add Runestone.doccarchive
-           git commit -S -am "Generated documentation"
+           git commit -S -m "Generated documentation"
            git push
          else
            echo "No changes to commit"
