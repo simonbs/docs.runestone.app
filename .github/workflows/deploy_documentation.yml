@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch-lokalise:
+  deploy_documentation:
     runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
     - uses: actions/checkout@v2
       with:
         repository: simonbs/runestone
+        token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
         ref: main
