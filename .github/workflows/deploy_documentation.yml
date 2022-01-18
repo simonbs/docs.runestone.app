@@ -13,6 +13,7 @@ jobs:
         repository: simonbs/runestone
         token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
         ref: main
+        path: runestone
     - name: Debug
       run: ls -la
     - name: Navigate to Runestone repository
