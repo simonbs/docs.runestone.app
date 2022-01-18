@@ -37,7 +37,7 @@ jobs:
       run: |
          if [ -n "$(git status --porcelain)" ]; then
            git add Runestone.doccarchive
-           git commit -S -m "Generated documentation"
+           git commit -S -m "Updates documentation"
            git push
          else
            echo "No changes to commit"
