@@ -18,3 +18,18 @@ jobs:
       run: ls -la
     - name: Navigate to Runestone repository
       run: cd runestone
+    - name: Generate documentation
+      run: xcodebuild docbuild -scheme Runestone -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ../DerivedData
+    - name: Navigate back to root
+      run: cd ..
+    - name: Copy documentation
+      run: mv DerivedData/Products/Debug-iphonesimulator/Runestone.doccarchive Runestone.doccarchive
+    - name: Commit changes
+      run: |
+         if [ -n "$(git status --porcelain)" ]; then
+           git commit -S -am "Generated documentation"
+           git push
+           exit 1
+         else
+           echo "No changes to commit"
+         fi
