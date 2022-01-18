@@ -25,7 +25,7 @@ jobs:
       run: |
           cd runestone
           xcodebuild docbuild -scheme Runestone -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ../DerivedData
-          mv ../DerivedData/Products/Debug-iphonesimulator/Runestone.doccarchive ../
+          mv ../DerivedData/Build/Products/Debug-iphonesimulator/Runestone.doccarchive ../
     - name: Commit changes
       run: |
          if [ -n "$(git status --porcelain)" ]; then
