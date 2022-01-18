@@ -25,6 +25,7 @@ jobs:
       run: |
           cd runestone
           xcodebuild docbuild -scheme Runestone -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ../DerivedData
+          rm -rf ../Runestone.doccarchive
           mv ../DerivedData/Build/Products/Debug-iphonesimulator/Runestone.doccarchive ../
     - uses: crazy-max/ghaction-import-gpg@v3
       with:
