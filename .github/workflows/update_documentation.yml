@@ -8,6 +8,8 @@ on:
         description: Tag or branch in Runestone repository
         default: main
         required: true
+  repository_dispatch:
+    types: [update_documentation]
 
 jobs:
   update_documentation:
@@ -20,7 +22,7 @@ jobs:
       with:
         repository: simonbs/runestone
         token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-        ref: ${{ github.event.inputs.tag }}
+        ref: ${{ github.event.inputs.tag || github.event.client_payload.tag }}
         path: runestone
         submodules: recursive
     - name: Generate documentation
