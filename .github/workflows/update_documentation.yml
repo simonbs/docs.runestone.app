@@ -20,7 +20,7 @@ jobs:
     - name: Checkout Runestone repository
       uses: actions/checkout@v2
       with:
-        repository: simonbs/runestone
+        repository: simonbs-sponsors/runestone
         token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
         ref: ${{ github.event.inputs.tag || github.event.client_payload.tag }}
         path: runestone
