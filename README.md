@@ -3,7 +3,7 @@ Documentation for Runestone. The documentation is hosted at docs.runestone.app
 
 ## Deploying the Documentation
 
-The documentation is deployed by running the [Update documentation](https://github.com/simonbs/docs.runestone.app/actions) action. Then running the action it will ask which branch to build the documentation from.
+The documentation is deployed by running the [Update documentation](https://github.com/simonbs/docs.runestone.app/actions/workflows/update_documentation.yml) action. Then running the action it will ask which branch to build the documentation from.
 
 The action then performs the following steps:
 
